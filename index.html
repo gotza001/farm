@@ -157,10 +157,12 @@ function loadData() {
 </head>
 
 <body>
+ <BODY BGCOLOR="#F5F5F5"> 
 
-<P ALIGN=CENTER> 
-<FONT SIZE=10>Slow life Farm</FONT>
-<BR><BR><BR>
+<div  align=center> <FONT SIZE=8>  Slow life Farm Hydroponic  </FONT> </div>
+<BR><BR>
+<div  align=center> <FONT SIZE=5>  Data monitor control   </FONT> </div>
+<BR>
 
 <div id="g4"></div>
 <div id="g5"></div>
@@ -168,6 +170,38 @@ function loadData() {
     <div id="g1"></div>
     <div id="g2"></div> 
     <div id="g3"></div>
+
+<BR>  <BR>  <BR>
+
+<div  align=Left> <FONT SIZE=5 FONT COLOR="#9ACD32"> <B><p>Data Logger </p> </B> </FONT> </div>
+
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+
+src="https://thingspeak.com/channels/78056/charts/4?
+
+&timescale=240&days=5&dynamic=true&yaxis=C&title=Temperature"></iframe>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+
+src="https://thingspeak.com/channels/78056/charts/5?&timescale=240&days=5&dynamic=true&yaxis=
+
+%25&title=Humidity"></iframe>
+ <BR> 
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+
+src="https://thingspeak.com/channels/78056/charts/1?&timescale=60&days=3&dynamic=true&yaxis=
+
+%E2%84%83&title=Water%20Temperature"></iframe>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+
+src="https://thingspeak.com/channels/78056/charts/2?&timescale=60&days=3&dynamic=true&yaxis=mS
+
+%2Fcm&title=EC%20Meter"></iframe>
+ <BR> 
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+
+src="https://thingspeak.com/channels/78056/charts/3?&timescale=15&days=1&dynamic=true&yaxis=L
+
+%2Fhr&title=WaterFlow"></iframe>
 
      <BR>  <BR>  <BR>  <BR>  <BR>
 <script src="http://www.clocklink.com/embed.js"></script> <script type="text/javascript" 
