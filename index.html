@@ -28,8 +28,8 @@
         margin: 1em;
     }
 #g5 {
-        width: 200px;
-        height: 160px;
+        width: 250px;
+        height: 250px;
         display: inline-block;
         margin: 2em;
     }
@@ -51,10 +51,10 @@
   	var channel_id = 78056;
  	 var api_key = 'DQZDMKSLV8LN41RI';
 	var watertemp =0;
-	  var ec=0;
-	var  waterflow=0;
-                   var  temp=0;
-                    var  humidity=0;
+	  var ec =0;
+	var  waterflow =0;
+                   var  temp =0;
+                    var  humidity =0;
 
 function loadData() {
 
@@ -76,18 +76,29 @@ function loadData() {
     document.addEventListener("DOMContentLoaded", function(event) {
         g1 = new JustGage({
             id: "g1",
-            value: 100,
+            value: 0,
             min: 0,
             max: 100,
             decimals: 2,
    
             title: "Water Temp",
             label: "C",
+            pointer: true,
+
+            pointerOptions: {
+  toplength: -15,
+   bottomlength: 8,
+   bottomwidth: 6,
+    color: '#8e8e93',
+   stroke: '#ffffff',
+   stroke_width: 3,
+   stroke_linecap: 'round'
+   }  
         });
 
         g2 = new JustGage({
             id: "g2",
-            value: 10,
+            value: 0,
             min: 0,
             max: 10,
             decimals: 2,
@@ -102,44 +113,83 @@ function loadData() {
  hi : 10
 }], 
             title: "EC Level",
-            label: "mS/cm"
+            label: "mS/cm",
+            pointer: true,
+            pointerOptions: {
+  toplength: -15,
+   bottomlength: 8,
+   bottomwidth: 6,
+    color: '#8e8e93',
+   stroke: '#ffffff',
+   stroke_width: 3,
+   stroke_linecap: 'round'
+   }  
         });
 
         g3 = new JustGage({
             id: "g3",
-            value: 500,
+            value: 0,
             min: 0,
             max: 500,
            decimals: 2,
    
             title: "Water Flow",
-            label: "L/hr"
+            label: "L/hr",
+            pointer: true,
+            pointerOptions: {
+  toplength: -15,
+   bottomlength: 8,
+   bottomwidth: 6,
+    color: '#8e8e93',
+   stroke: '#ffffff',
+   stroke_width: 3,
+   stroke_linecap: 'round'
+   } 
         });
 
           g4 = new JustGage({
             id: "g4",
-            value: 100,
+            value: 0,
             min: 0,
             max: 100,
-            decimals: 2,
+            decimals: 1,
    
+            symbol: 'C',
+  
             title: "Temperature",
-            label: "C",
-            gaugeWidthScale: 0.4,
-            donut: true
+            gaugeWidthScale: 0.2,
+            donut: true,
+            pointer: true,
+            pointerOptions: {
+    toplength: 10,
+    bottomlength: 12,
+   bottomwidth: 6,
+   color: '#00BFFF'
+  },
+   
         });
 
           g5 = new JustGage({
             id: "g5",
-            value: 100,
+            value: 0,
             min: 0,
             max: 100,
-            decimals: 2,
+            decimals: 1,
    
+            symbol: '%',
+  
             title: " Humidity",
-            label: "%",
-            gaugeWidthScale: 0.4,
-            donut: true
+            gaugeWidthScale: 0.2,
+            donut: true,
+            pointer: true,
+       
+            pointerOptions: {
+  toplength: 2,
+  bottomlength: -22,
+   bottomwidth: 10,
+  color: '#00BFFF'
+   },
+    
         });
 
 
@@ -159,10 +209,10 @@ function loadData() {
 <body>
  <BODY BGCOLOR="#F5F5F5"> 
 
-<div  align=center> <FONT SIZE=8>  Slow life Farm Hydroponic  </FONT> </div>
-<BR><BR>
-<div  align=center> <FONT SIZE=5>  Data monitor control   </FONT> </div>
+<div  align=center> <FONT FACE="Comic Sans MS" FONT SIZE=8 COLOR="#9ACD32"> <B>  Slow life Farm Hydroponic  </B></FONT> </div>
 <BR>
+<div  align=center> <FONT SIZE=5 COLOR="#9ACD32" > <B>  Data Control Monitor  </B> </FONT> </div>
+<BR><BR>
 
 <div id="g4"></div>
 <div id="g5"></div>
@@ -173,43 +223,33 @@ function loadData() {
 
 <BR>  <BR>  <BR>
 
-<div  align=Left> <FONT SIZE=5 FONT COLOR="#9ACD32"> <B><p>Data Logger </p> </B> </FONT> </div>
+<div  align=Left> <FONT SIZE=6 FONT COLOR="#FF4500"> <B><p>Data Logger </p> </B> </FONT> </div>
 
-<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
-
-src="https://thingspeak.com/channels/78056/charts/4?
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/78056/charts/4?
 
 &timescale=240&days=5&dynamic=true&yaxis=C&title=Temperature"></iframe>
-<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/78056/charts/5?
 
-src="https://thingspeak.com/channels/78056/charts/5?&timescale=240&days=5&dynamic=true&yaxis=
-
-%25&title=Humidity"></iframe>
+&timescale=240&days=5&dynamic=true&yaxis=%25&title=Humidity"></iframe>
  <BR> 
-<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/78056/charts/1?
 
-src="https://thingspeak.com/channels/78056/charts/1?&timescale=60&days=3&dynamic=true&yaxis=
+&timescale=60&days=3&dynamic=true&yaxis=%E2%84%83&title=Water%20Temperature"></iframe>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/78056/charts/2?
 
-%E2%84%83&title=Water%20Temperature"></iframe>
-<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
-
-src="https://thingspeak.com/channels/78056/charts/2?&timescale=60&days=3&dynamic=true&yaxis=mS
-
-%2Fcm&title=EC%20Meter"></iframe>
+&timescale=60&days=3&dynamic=true&yaxis=mS%2Fcm&title=EC%20Meter"></iframe>
  <BR> 
-<iframe width="450" height="260" style="border: 1px solid #cccccc;" 
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/78056/charts/3?
 
-src="https://thingspeak.com/channels/78056/charts/3?&timescale=15&days=1&dynamic=true&yaxis=L
-
-%2Fhr&title=WaterFlow"></iframe>
+&timescale=15&days=1&dynamic=true&yaxis=L%2Fhr&title=WaterFlow"></iframe>
 
      <BR>  <BR>  <BR>  <BR>  <BR>
-<script src="http://www.clocklink.com/embed.js"></script> <script type="text/javascript" 
 
-language="JavaScript">obj=new Object;obj.clockfile="5030-green.swf";obj.TimeZone="ICT"; 
 
-obj.width=127;obj.height=150;obj.wmode="transparent";obj.TimeFormat="hh:mm:ss TT";showClock(obj);</script>
+Design By Boonyarit Chotisatkul
+<script src="http://www.clocklink.com/embed.js"></script> <script type="text/javascript" language="JavaScript">obj=new Object;obj.clockfile="5030-
 
+green.swf";obj.TimeZone="ICT"; obj.width=127;obj.height=150;obj.wmode="transparent";obj.TimeFormat="hh:mm:ss TT";showClock(obj);</script>
 </body>
 
 </html>
