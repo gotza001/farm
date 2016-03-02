@@ -1,45 +1,181 @@
+
 <html>
-  <head>
-   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   <script type="text/javascript">
-      google.charts.load('current', {'packages':['gauge']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['Memory', 80],
-          ['CPU', 55],
-          ['Network', 68]
-        ]);
+<head>
 
-        var options = {
-          width: 400, height: 120,
-          redFrom: 90, redTo: 100,
-          yellowFrom:75, yellowTo: 90,
-          minorTicks: 5
-        };
+    <style>
+    body {
+        text-align: center;
+    }
 
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+    #g1{
+        width: 200px;
+        height: 160px;
+        display: inline-block;
+        margin: 1em;
+   }
+    #g2,
+    #g3 {
+        width: 200px;
+        height: 160px;
+        display: inline-block;
+        margin: 1em;
+    }
+#g4 {
+        width: 250px;
+        height: 250px;
+        display: inline-block;
+        margin: 1em;
+    }
+#g5 {
+        width: 200px;
+        height: 160px;
+        display: inline-block;
+        margin: 2em;
+    }
 
-        chart.draw(data, options);
+    p {
+        display: block;
+        width: 450px;
+        margin: 1em auto;
+        text-align: left;
+    }
+    </style>
+
+
+<script type='text/javascript'src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+ <script src="raphael-2.1.4.min.js"></script>
+    <script src="justgage.js"></script>
+<script type='text/javascript'>
+  	var channel_id = 78056;
+ 	 var api_key = 'DQZDMKSLV8LN41RI';
+	var watertemp =0;
+	  var ec=0;
+	var  waterflow=0;
+                   var  temp=0;
+                    var  humidity=0;
+
+function loadData() {
+
+    $.getJSON('https://api.thingspeak.com/channels/' + channel_id + '/feed/last.json?api_key=' + api_key, function(data) {
+
+      watertemp = data.field1;
+	  ec = data.field2;
+         waterflow = data.field3;
+                 temp = data.field4;
+           humidity = data.field5;
+
+    });
+  }
+
+
+
+    var g1, g2, g3,g4,g5;
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        g1 = new JustGage({
+            id: "g1",
+            value: 100,
+            min: 0,
+            max: 100,
+            decimals: 2,
+   
+            title: "Water Temp",
+            label: "C",
+        });
+
+        g2 = new JustGage({
+            id: "g2",
+            value: 10,
+            min: 0,
+            max: 10,
+            decimals: 2,
+  
+           customSectors: [{
+  color : "#00ff00",
+   lo : 1.2,
+   hi : 1.8
+      },{
+ color : "#ff0000",
+ lo : 1.8,
+ hi : 10
+}], 
+            title: "EC Level",
+            label: "mS/cm"
+        });
+
+        g3 = new JustGage({
+            id: "g3",
+            value: 500,
+            min: 0,
+            max: 500,
+           decimals: 2,
+   
+            title: "Water Flow",
+            label: "L/hr"
+        });
+
+          g4 = new JustGage({
+            id: "g4",
+            value: 100,
+            min: 0,
+            max: 100,
+            decimals: 2,
+   
+            title: "Temperature",
+            label: "C",
+            gaugeWidthScale: 0.4,
+            donut: true
+        });
+
+          g5 = new JustGage({
+            id: "g5",
+            value: 100,
+            min: 0,
+            max: 100,
+            decimals: 2,
+   
+            title: " Humidity",
+            label: "%",
+            gaugeWidthScale: 0.4,
+            donut: true
+        });
+
 
         setInterval(function() {
-          data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-          chart.draw(data, options);
-        }, 13000);
-        setInterval(function() {
-          data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-          chart.draw(data, options);
-        }, 5000);
-        setInterval(function() {
-          data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-          chart.draw(data, options);
-        }, 26000);
-      }
+            g1.refresh(watertemp);
+            g2.refresh(ec);
+            g3.refresh(waterflow);
+            g4.refresh(temp);
+           g5.refresh(humidity);
+            loadData();
+        }, 1000);
+    });
     </script>
-  </head>
-  <body>
-    <div id="chart_div" style="width: 400px; height: 120px;"></div>
-  </body>
+
+</head>
+
+<body>
+
+<P ALIGN=CENTER> 
+<FONT SIZE=10>Slow life Farm</FONT>
+<BR><BR><BR>
+
+<div id="g4"></div>
+<div id="g5"></div>
+ <BR>
+    <div id="g1"></div>
+    <div id="g2"></div> 
+    <div id="g3"></div>
+
+     <BR>  <BR>  <BR>  <BR>  <BR>
+<script src="http://www.clocklink.com/embed.js"></script> <script type="text/javascript" 
+
+language="JavaScript">obj=new Object;obj.clockfile="5030-green.swf";obj.TimeZone="ICT"; 
+
+obj.width=127;obj.height=150;obj.wmode="transparent";obj.TimeFormat="hh:mm:ss TT";showClock(obj);</script>
+
+</body>
+
 </html>
